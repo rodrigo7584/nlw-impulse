@@ -1,18 +1,29 @@
-import {Bug, Cloud, Heart, Lightbulb} from "phosphor-react"
 import { CloseButton } from "./CloseButton"
-
+import { Heart } from "phosphor-react"
+import bugIcone from "../assets/bug.svg"
+import ideaIcone from "../assets/idea.svg"
+import cloudIcone from "../assets/cloud.svg"
 const feedbackTypes = {
   BUG: {
     title: 'Problema',
-    image: <Bug/>
+    image: {
+      source: bugIcone,
+      alt: 'icone inseto'
+    }
   },
   IDEA:{
     title: 'Ideia',
-    image: <Lightbulb/>
+    image: {
+      source: ideaIcone,
+      alt: 'icone ideia'
+    }
   },
   OTHER:{
     title: 'Outro',
-    image: <Cloud/>
+    image: {
+      source: cloudIcone,
+      alt: 'icone nuvem'
+    }
   }
 }
 
@@ -25,7 +36,14 @@ export function WidgetForm(){
       </header>
 
       <div className="flex py-8 gap-2 w-full">
-       {Object.entries(feedbackTypes)}
+       {Object.entries(feedbackTypes).map(([key, value]) => {
+         return(
+           <button>
+             <img src={value.image.source} alt={value.image.alt} />
+             <span>{value.title}</span>
+           </button>
+         )
+       })}
       </div>
 
       <footer className="text-xs text-neutral-400 ">
